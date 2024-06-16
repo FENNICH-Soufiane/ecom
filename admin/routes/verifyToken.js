@@ -10,6 +10,7 @@ const verifyToken = (req, res, next) => {
 
     try {
         const verified = jwt.verify(token, process.env.JWT_SECRET);
+        console.log(verified);
         req.user = verified; // Store the user information in the request
         next();
     } catch (err) {
@@ -32,7 +33,7 @@ const verifyTokenAndAuthorization = (req, res, next) => {
 }
 
 // verify token admin
-const verifyTokenAdmin = (req, res, next) => {
+const verifyTokenAndAdmin = (req, res, next) => {
 
     verifyToken(req, res, () => {
         if (req.user.isAdmin) {
@@ -45,4 +46,4 @@ const verifyTokenAdmin = (req, res, next) => {
 }
 
 
-module.exports = { verifyToken, verifyTokenAndAuthorization, verifyTokenAdmin };
+module.exports = { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin };

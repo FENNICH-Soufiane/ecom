@@ -1,5 +1,5 @@
 const express = require('express');
-const { verifyToken, verifyTokenAdmin } = require('./verifyToken');
+const { verifyToken, verifyTokenAndAdmin } = require('./verifyToken');
 const { verifyTokenAndAuthorization } = require('./verifyToken');
 const router = express.Router();
 const bcrypt = require("bcrypt");
@@ -36,7 +36,7 @@ router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
 })
 
 // get specific user
-router.get("/find/:id", verifyTokenAdmin, async (req, res) => {
+router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
         const { password, ...others } = user._doc;
@@ -47,7 +47,7 @@ router.get("/find/:id", verifyTokenAdmin, async (req, res) => {
 })
 
 // Get All User
-router.get("/", verifyTokenAdmin, async (req, res) => {
+router.get("/", verifyTokenAndAdmin, async (req, res) => {
     const query = req.query.new;
     try {
         const users = query 
@@ -60,7 +60,7 @@ router.get("/", verifyTokenAdmin, async (req, res) => {
 })
 
 // get each user created by month
-router.get("/stats", verifyTokenAdmin, async (req, res) => {
+router.get("/stats", verifyTokenAndAdmin, async (req, res) => {
     const date = new Date();
     const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
 

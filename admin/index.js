@@ -7,6 +7,7 @@ const userRoute = require("./routes/user");
 const authRoute = require("./routes/auth");
 
 
+
 dotenv.config()
 
 mongoose.connect(
@@ -23,4 +24,5 @@ app.listen(port, () => {
 
 app.use(express.json());
 app.use("/api/user", userRoute);
-app.use("/api/user", authRoute);
+app.use("/api/auth", authRoute);
+

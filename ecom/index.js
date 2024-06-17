@@ -1,16 +1,16 @@
-const express = require("express");
-const app = express();
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-dotenv.config()
+import App from './src/App';
 
-mongoose.connect(
-    process.env.mongo_url)
-    .then(() => console.log("DB connection Successfull"))
-    .catch((err) => console.log("connection to db failed : " + err));
 
-const port = 5000
-app.listen(process.env.port || port, () => {
-    console.log("Backend server is runing : " + port)
-});
+ // Remplacez par votre clé publique Stripe
+
+ReactDOM.render(
+  <React.StrictMode>
+    
+      <App />
+   
+  </React.StrictMode>,
+  document.getElementById('root')
+);
